@@ -4,6 +4,6 @@ import './index.css'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <><h1>Root</h1></>
-  </StrictMode>,
+    <><h1>best</h1></>
+  </StrictMode>
 )
