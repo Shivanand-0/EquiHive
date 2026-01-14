@@ -3,14 +3,14 @@ import Hero from './Hero';
 import Brokrage from './Brokrage';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
+import OpenAccount from '../OpenAccount';
 
 function PricingPage() {
     return ( 
         <>  
-            <Navbar/>
             <Hero />
+            <OpenAccount/>
             <Brokrage/>
-            <Footer/>
         </>
      );
 }
