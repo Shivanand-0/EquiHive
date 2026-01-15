@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 
 function Navbar() {
     return (
-            <nav className="navbar navbar-expand-lg border-bottom px-5 py-4">
+            <nav className="navbar navbar-expand-lg border-bottom px-5 py-4 position-sticky top-0 bg-white" style={{zIndex:'1000'}}>
                 <div className="container">
                     <Link className="navbar-brand px-5 ms-5" to="/">
                         <img src="/media/images/logo.svg" alt="Zerodha Logo" style={{width:"24%"}} />
