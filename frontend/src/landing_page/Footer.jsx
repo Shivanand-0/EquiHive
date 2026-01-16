@@ -10,16 +10,16 @@ function Footer() {
                     <p>&copy;2010 - 2025, Zerodha Broking Ltd. <br /> All rights reserved.</p>
                     <div className="row">
                         <div className="col-1">
-                            <a href="#"><i class="fa-brands fa-x-twitter" style={{ color: "black" }}></i></a>
+                            <a href="#"><i className="fa-brands fa-x-twitter" style={{ color: "black" }}></i></a>
                         </div>
                         <div className="col-1">
-                            <a href="#"><i class="fa-brands fa-facebook" style={{ color: "black" }}></i></a>
+                            <a href="#"><i className="fa-brands fa-facebook" style={{ color: "black" }}></i></a>
                         </div>
                         <div className="col-1">
                             <a href="#" ><i className="fa-brands fa-instagram" style={{ color: "black" }}></i></a>
                         </div>
                         <div className="col-1">
-                            <a href="#"><i class="fa-brands fa-linkedin-in" style={{ color: "black" }}></i></a>
+                            <a href="#"><i className="fa-brands fa-linkedin-in" style={{ color: "black" }}></i></a>
                         </div>
                     </div>
                     <hr />
@@ -28,10 +28,10 @@ function Footer() {
                             <a href="#" ><i className="fa-brands fa-youtube" style={{ color: "black" }}></i></a>
                         </div>
                         <div className="col-1">
-                            <a href="#"><i class="fa-brands fa-whatsapp" style={{ color: "black" }}></i></a>
+                            <a href="#"><i className="fa-brands fa-whatsapp" style={{ color: "black" }}></i></a>
                         </div>
                         <div className="col-1">
-                            <a href="#"><i class="fa-brands fa-telegram" style={{ color: "black" }}></i></a>
+                            <a href="#"><i className="fa-brands fa-telegram" style={{ color: "black" }}></i></a>
                         </div>
                     </div>
                 </div>
