@@ -1,7 +1,7 @@
 import React from 'react';
 
 function Brokrage() {
-    return ( 
+    return (
         <div className="container">
             <div className="row border-top pt-5">
                 <div className="col-7">
