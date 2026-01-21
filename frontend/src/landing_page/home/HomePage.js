@@ -1,1 +1,0 @@
-// its like wrapper for all components in home page.
