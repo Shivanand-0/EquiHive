@@ -4,11 +4,12 @@ import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import bodyParser from 'body-parser';
+import cookieParser from "cookie-parser";
+import authRoute from "./Routes/AuthRoute.js";
 
 import HoldingsModel from './model/HoldingsModel.js';
 import PositionsModel from './model/PositionsModel.js';
 import OrdersModel from './model/OrdersModel.js';
-
 
 
 // // // configuration
@@ -21,8 +22,17 @@ const url= process.env.MONGO_URL;
 
 // // // configuration 
 const app=express();
-app.use(cors());
-app.use(bodyParser.json());
+app.use(
+  cors({
+    origin: ["http://localhost:3000", "http://127.0.0.1:5173", "http://127.0.0.1:5174/"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
+// app.use(bodyParser.json());
+app.use(cookieParser());
+app.use(express.json());
+
 
 // mongoDB connection 
 async function main(){
@@ -38,9 +48,8 @@ main()
 
 //  ------------------------------
 
-
+app.use("/", authRoute);
 // // // routes
-
 app.get('/',(req,res)=>{
     res.send("Hello World");
 });
