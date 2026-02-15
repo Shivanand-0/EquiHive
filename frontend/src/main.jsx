@@ -4,6 +4,8 @@ import { BrowserRouter, Routes,Route } from 'react-router-dom'
 import 'react-toastify/dist/ReactToastify.css';
 import { CookiesProvider } from 'react-cookie';
 import axios from "axios";
+import { BACKEND_URL } from "../utils/constants.js";
+
 import './index.css'
 import {Login, Signup} from './landing_page/signup/index.js'
 import HomePage from './landing_page/home/HomePage'
@@ -16,12 +18,13 @@ import Navbar from './landing_page/Navbar';
 import NotFound from './landing_page/NotFound.jsx';
 
 
+axios.defaults.baseURL = BACKEND_URL; 
 // Force all axios requests to send cookies
 axios.defaults.withCredentials = true;
 
 // Force the base URL so you don't have to type it every time
 // CHANGE THIS to match your backend port (4000)
-axios.defaults.baseURL = "http://localhost:4000";
+// axios.defaults.baseURL = "http://localhost:4000";
 
 createRoot(document.getElementById('root')).render(
   <>
