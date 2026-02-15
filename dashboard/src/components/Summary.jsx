@@ -1,10 +1,43 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
+import axios from "axios";
 
 const Summary = () => {
+  const [username, setUsername] = useState("");
+
+
+    useEffect(() => {
+    const verifyCookie = async () => {
+      try {
+        const { data } = await axios.post(
+          "http://localhost:4000",
+          {},
+          {withCredentials: true }
+        );
+  
+        const { status, user } = data;
+        if (status) {
+          setUsername(user);
+        } else {
+          removeCookie("token");
+          window.location.href = "http://localhost:5173/login";
+        }
+      } catch (error) {
+        console.error(error);
+        removeCookie("token");
+        window.location.href = "http://localhost:5173/login";
+      }
+    };
+
+    verifyCookie();
+  }, []);
+
+
+
+
   return (
     <>
       <div className="username">
-        <h6>Hi, User!</h6>
+        <h6>Hi, <span>{username}</span>!</h6>
         <hr className="divider" />
       </div>
 
@@ -59,6 +92,17 @@ const Summary = () => {
       </div>
     </>
   );
+};
+
+const styles = {
+  sessionBar: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: "1rem 2rem",
+    backgroundColor: "#f4f4f4",
+    borderBottom: "1px solid #ddd",
+  },
 };
 
 export default Summary;

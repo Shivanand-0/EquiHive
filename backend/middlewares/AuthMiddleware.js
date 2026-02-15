@@ -5,6 +5,7 @@ import jwt from "jsonwebtoken";
 dotenv.config();
 
 export const userVerification = (req, res) => {
+  console.log("DEBUG HEADERS:", req.headers.cookie);
   const token = req.cookies.token;
   
   // LOG 1: Check if token arrived

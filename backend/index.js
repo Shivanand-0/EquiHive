@@ -24,7 +24,13 @@ const url= process.env.MONGO_URL;
 const app=express();
 app.use(
   cors({
-    origin: ["http://localhost:3000", "http://127.0.0.1:5173", "http://127.0.0.1:5174/"],
+    origin: [
+      "http://localhost:3000", 
+      "http://127.0.0.1:5173",
+      "http://localhost:5173", 
+      "http://localhost:5174",
+      "http://127.0.0.1:5174"
+    ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
@@ -89,5 +95,5 @@ app.post('/newOrder', async(req,res)=>{
 
 
 app.listen(PORT,()=>{
-    console.log("Server is running on port 3000");
+    console.log("Server is running on port "+PORT);
 });
