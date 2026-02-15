@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import { DASHBOARD_URL, BACKEND_URL } from "../../../utils/constants.js";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -31,7 +32,8 @@ const Login = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        "http://localhost:4000/login",
+        // "http://localhost:4000/login",
+          `${BACKEND_URL}/login`,
         {
           ...inputValue,
         },
@@ -42,7 +44,7 @@ const Login = () => {
       if (success) {
         handleSuccess(message);
         setTimeout(() => {
-          window.location.href = "http://localhost:5174";
+          window.location.href = DASHBOARD_URL;
         }, 1000);
       } else {
         handleError(message);

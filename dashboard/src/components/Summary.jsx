@@ -1,5 +1,7 @@
 import React,{useState,useEffect} from "react";
 import axios from "axios";
+import {FRONTEND_URL, BACKEND_URL } from "../../utils/constants.js";
+
 
 const Summary = () => {
   const [username, setUsername] = useState("");
@@ -9,7 +11,7 @@ const Summary = () => {
     const verifyCookie = async () => {
       try {
         const { data } = await axios.post(
-          "http://localhost:4000",
+          `${BACKEND_URL}`,
           {},
           {withCredentials: true }
         );
@@ -19,12 +21,12 @@ const Summary = () => {
           setUsername(user);
         } else {
           removeCookie("token");
-          window.location.href = "http://localhost:5173/login";
+          window.location.href = `${FRONTEND_URL}/login`;
         }
       } catch (error) {
         console.error(error);
         removeCookie("token");
-        window.location.href = "http://localhost:5173/login";
+        window.location.href = `${FRONTEND_URL}/login`;
       }
     };
 

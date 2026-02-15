@@ -2,13 +2,14 @@ import React, {useState,useEffect} from "react";
 // import {holdings} from "../data/data";
 import {VerticalGraph}  from "./VerticalGraph";
 import axios from "axios";
+import { BACKEND_URL } from "../../utils/constants.js";
 
 const Holdings = () => {
 
     const [allHoldings, setAllHoldings]= useState([]);
   
     useEffect(()=>{
-      axios.get("http://localhost:4000/allHoldings",{
+      axios.get(`${BACKEND_URL}/allHoldings`,{
         withCredentials: true,
       })
       .then((res)=>{
