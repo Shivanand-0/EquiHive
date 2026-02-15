@@ -6,7 +6,9 @@ const Positions = () => {
   const [allPositions,setAllPositions]= useState([]);
 
   useEffect(()=>{
-    axios.get("http://localhost:3000/allPositions")
+    axios.get("http://localhost:4000/allPositions",{
+      withCredentials: true,
+    })
     .then((res)=>{
       setAllPositions(res.data);
     })

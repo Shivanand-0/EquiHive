@@ -15,12 +15,17 @@ export const Signup= async(req,res,next)=>{
             username,
             createdAt,
         });
-        const token= createSecretToken(user._id);
+        const token = createSecretToken(user._id);
+
         res.cookie("token", token, {
-            withCredentials: true,
-            httpOnly: false,
+          httpOnly: false, // Set to true for better security in production
+          secure: false,   // false is correct for localhost (http)
+          sameSite: "lax", // Required for localhost cross-port cookies
+          path: "/",       // Ensures cookie is valid for all routes
+          maxAge: 3 * 24 * 60 * 60 * 1000 // 3 days
         });
-        res.status(201).json({message: "User created successfully",success: true, user});
+
+        res.status(200).json({ message: "User logged in successfully", success: true });
         next();
     } catch (error) {
         console.log(error);
@@ -42,14 +47,27 @@ export const Login = async (req, res, next) => {
     if (!auth) {
       return res.json({message:'Incorrect password or email' }) 
     }
-     const token = createSecretToken(user._id);
-     res.cookie("token", token, {
+     // ADD THESE LOGS
+        console.log("LOGIN DEBUG:");
+        console.log("1. User ID:", user._id);
+        console.log("2. Secret Key (Check if exists):", process.env.TOKEN_KEY);
+
+        const token = createSecretToken(user._id);
+        
+        console.log("3. Generated Token:", token); 
+
+        if (!token) {
+            return res.json({message: 'Token generation failed'});
+        }
+      res.cookie("token", createSecretToken(user._id), {
       withCredentials: true,
-      httpOnly: false, // set to false so react-cookie can read it
-      secure: false,   // set to false for localhost (http)
-      sameSite: "lax", // helps with browser blocking
-      path: "/"        // ensure cookie is available on all pages
+      httpOnly: false,
+      secure: false,       // ⚠️ CRITICAL: Must be FALSE for localhost (http)
+      sameSite: "Lax",     // ⚠️ CRITICAL: Must be "Lax" (not 'None' or 'Strict')
+      path: "/",           // Ensures cookie works on all pages
+      maxAge: 3 * 24 * 60 * 60 * 1000,
     });
+    console.log("4. Cookie Set with Token");
      res.status(201).json({ message: "User logged in successfully", success: true });
      next()
   } catch (error) {
